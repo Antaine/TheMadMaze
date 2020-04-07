@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.04f;
     public LayerMask groundMask;
 
-    public static bool GameIsPause = false;
-    public GameObject pauseMenuUI;
+    //public static bool GameIsPause = false;
+    //public GameObject pauseMenuUI;
 
     Vector3 velocity;
     bool isGrounded;
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+   /*    if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPause)
             {
@@ -55,10 +55,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 Pause();
             }
-        }
+        }*/
     }
 
-    void Resume()
+    /*void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
@@ -82,5 +82,5 @@ public class PlayerMovement : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quit");
-    }
+    }*/
 }

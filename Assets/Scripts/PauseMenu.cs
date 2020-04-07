@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -25,8 +26,9 @@ public class PauseMenu : MonoBehaviour
         
     }
 
-    void Resume()
+   public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPause = false;
@@ -34,6 +36,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPause = true;
@@ -42,12 +45,15 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        Time.timeScale = 1f;
         Debug.Log("Loading Menu");
+        SceneManager.LoadScene("__Menu");
     }
 
     public void QuitGame()
     {
         Debug.Log("Quit");
+        Application.Quit();
     }
 }
 
