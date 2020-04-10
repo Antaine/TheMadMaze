@@ -65,13 +65,16 @@ public class PlayerMovement : MonoBehaviour
         switch (word)
         {
             case "jump":
+                Debug.Log("Jump");
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 word = "";
-                
                 break;
-           /* case "run":
-                speed = speed * 2;
-                break;*/
+              case "run":
+                Debug.Log("Sprint");
+                speed +=10;
+                word = "";
+                break;
+                
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
