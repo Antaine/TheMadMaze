@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 0f;
+    public float moveSpeed = 10f;
     private Rigidbody rbody;
     public Vector3 moveDir;
     public LayerMask whatWall;

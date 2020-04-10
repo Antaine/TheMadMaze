@@ -13,12 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.04f;
     public LayerMask groundMask;
 
-    //public static bool GameIsPause = false;
-    //public GameObject pauseMenuUI;
-
     Vector3 velocity;
     bool isGrounded;
-    // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
@@ -44,43 +40,6 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-   /*    if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameIsPause)
-            {
-                Resume();
-            }
 
-            else
-            {
-                Pause();
-            }
-        }*/
     }
-
-    /*void Resume()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        GameIsPause = false;
-    }
-
-    void Pause()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        GameIsPause = true;
-    }
-
-    public void LoadMenu()
-    {
-        Debug.Log("Loading Menu");
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quit");
-    }*/
 }
