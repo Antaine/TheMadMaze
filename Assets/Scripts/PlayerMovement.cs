@@ -18,11 +18,11 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
-    public string[] keywords = new string[] { "jump", "pause", "play", "run" };
+    public string[] keywords = new string[] { "jump", "pause", "play", "run","brake" };
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public Text results;
     protected PhraseRecognizer recognizer;
-    protected string word = "run";
+    protected string word = "";
 
     private void Start()
     {
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
      {
          word = args.text;
-         results.text = "You said: <b>" + word + "</b>";
+        // results.text = "You said: <b>" + word + "</b>";
      }
 
     // Update is called once per frame
@@ -69,12 +69,17 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 word = "";
                 break;
-              case "run":
+            case "run":
                 Debug.Log("Sprint");
-                speed +=10;
+                speed +=8;
                 word = "";
                 break;
-                
+            case "pause":
+                Debug.Log("Stop");
+                speed = 0f;
+                word = "";
+                break;
+
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
