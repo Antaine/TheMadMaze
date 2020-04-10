@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Windows.Speech;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +17,29 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+
+    public string[] keywords = new string[] { "jump", "pause", "play", "run" };
+    public ConfidenceLevel confidence = ConfidenceLevel.Medium;
+    public Text results;
+    protected PhraseRecognizer recognizer;
+    protected string word = "run";
+
+    private void Start()
+    {
+        if (keywords != null)
+        {
+            recognizer = new KeywordRecognizer(keywords, confidence);
+            recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
+            recognizer.Start();
+        }
+    }
+
+    //Turn into feedback to verify command
+    private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+     {
+         word = args.text;
+         results.text = "You said: <b>" + word + "</b>";
+     }
 
     // Update is called once per frame
     void Update()
@@ -37,9 +62,19 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        switch (word)
+        {
+            case "jump":
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                word = "";
+                
+                break;
+           /* case "run":
+                speed = speed * 2;
+                break;*/
+        }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
 
     }
 }
