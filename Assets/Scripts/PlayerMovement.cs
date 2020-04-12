@@ -79,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
                 speed = 0f;
                 word = "";
                 break;
+            case "play":
+                Debug.Log("Stop");
+                speed = 12f;
+                word = "";
+                break;
 
         }
         velocity.y += gravity * Time.deltaTime;
